@@ -1,0 +1,266 @@
+/* pseudo selectores */
+:root {/* se define una paleta de colores con los colores prinarios y variables*/
+    --blanco:#ffffff;
+    --oscuro:#2f0618;
+    --primario:#00cef5;
+    --secundario:#412a9c;
+    --gris:#1b66ff ;
+
+    --fuente-principal:3.8rem;
+    --fuente-secundaria:2.8rem;
+    --fuente-terciaria:1.8rem;
+}
+.servicios,/*estos serian los puntos de detencion del scroll*/
+.navegacion-principal,
+.formulario { 
+  scroll-snap-align: center;
+  scroll-snap-stop:always;
+}
+html{/*el valor de font size permite tener una precision con los valores
+     rem 1rem = 10px    */
+    font-size:62.5%;
+    box-sizing: border-box;
+    scroll-snap-type: y mandatory;/*el tipo de scroll en la pagina
+            mandatory permite un scroll hasta los puntos de scroll
+            con una simple rotacion de la rueda de scroll*/
+
+}
+*, *:before, *:after{/*junto con box-sizing el padding aplicado a un texto con imagen de fondo no afecta el tamaño de la imagen , after y before , se refiere a elementos que no existen via html pero si via css
+  por eso se los considera pseudo elementos */
+  box-sizing: inherit;
+}
+h1{
+  font-size: var(--fuente-principal);
+
+}
+h2{
+  font-size: var(--fuente-secundaria);
+}
+h3{
+   font-size: var(--fuente-terciaria);
+}
+h1, h2, h3{
+  text-align: center;
+}
+.titulo span{   /*  lo aplica al los span dentro de h1*/
+    font-size:20px;
+}
+.contenedor{
+    
+    max-width:120rem; /*equivaldria a 1200px, toma como maximo este
+                        valor si no toma el que hay disponible*/
+    margin: 0 auto ;/*interpreta al primero como arriba e izquierda
+     y al segundo como arriba y derecha coloca un margen que centra el
+     contenido de todo el main*/
+    text-align: center;
+}
+
+.boton{
+  background-color: var(--secundario); /* color de fondo */
+  color:var(--blanco); /* color de la letra */
+  padding: 1rem 3rem; /* le agregamos margenes al boton */
+  margin-top: 1rem;
+  font-size: 2rem;
+  text-decoration: none; /* quitamos la linea bajo el texto */
+  text-transform: uppercase; /* todo a mayusculas */
+  font-weight: bold ;  /* rellena mas la letra */
+  border-radius: 0.5rem;/*le da un efecto de redondeado a las esquinas*/
+  width: 50%;  /* el ancho del boton por defecto  */
+  text-align: center;
+  border:none;
+}
+.boton:hover {
+  cursor:pointer;
+}
+
+/*utilidades*/
+.w-100 {
+  width: 100%; 
+ 
+}
+.sombra {/*sombra creada con cssmatic.com*/
+  -webkit-box-shadow: 1px 5px 11px 0px rgba(0,0,0,0.51);
+  -moz-box-shadow: 1px 5px 11px 0px rgba(0,0,0,0.51);
+   box-shadow: 1px 5px 11px 0px rgba(0,0,0,0.51);
+   background-color: var(--blanco);
+   padding: 2rem;
+   border-radius: 1rem;  
+}
+
+body{  /*con estas dos lineas html y body podemos escribir codigo
+  en rem de forma mas adaptable, 1 rem equivale a 10px*/
+font-size:16px;
+font-family: 'Krub',sans-serif;
+/* permite agregar un degradado de fondo se especifica , que el degradado va hacia arriba (to top) el color en el inicio el de(0%) , lo
+siguiente es el color del final junto con (100%)*/
+background-image: linear-gradient(to top,#DFE9F3 0%,var(--blanco) 100%) ;
+}
+.nav-bg{
+    background-color: var(--secundario);
+}
+.navegacion-principal{
+  display: flex;/*permite activar funciones especiales*/
+/* justify-content: space-around; permite centrar equitativamente */
+/*flex-direction:column; estas dos propiedades permiten alinear en     
+                          forma  vertical el menu de navegacion */ 
+/*  align-items: center;    */
+ flex-direction: column;  
+ align-items: center; /*aplicaria el centrado cuando se activa el media
+                           query para resolucion de tablet*/
+}
+@media(min-width: 480px){/*resolucion para un telefono*/
+}
+/*colocamos el contenido en un mediaqueri para que con dispositivos de
+pantalla pequeña (tablet para abajo) mis servicios se coloque en columnas*/
+@media(min-width: 768px){/*resolucion para una tablet*/
+    .navegacion-principal{
+      flex-direction: row;
+      justify-content: space-between; /*permite centrar el contenido de forma horizontal junto con display flex*/
+    }  
+    .boton {
+      width: auto; /* ancho del boton por debajo de 768px */
+    } 
+    .servicios {  /*esta clase utiliza grid y se trabaja con 
+      propiedades de grid*/
+     display:grid;
+     grid-template-columns:33.3% 33.3% 33.3%;/*define el tamaño de columnas,en este caso un tercio del espacio para cada columna . (300px 300px define dos columnas de 300 pixeles) , grid-template-rows: 200px 800px , define dos filas una de 200px y otra de 800px.
+      otras formas grid-template-columns: 1fr 1fr 1fr;
+     grid-template-columns: repeat(3, 1fr);*/
+     column-gap: 10px;/*genera una separacion del texto en el margen
+                      izquierdo*/                  
+  }  
+  .contenedor-campos {/*este es el contenedor del campo del formulario*/
+    display:grid; /*permite acceder a opciones de contenido grid*/
+    grid-template-columns: 50% 50%;/*la plantilla tendra dos columnas*/
+    column-gap: 1rem;/*el espacio entre el borde de la columna lado izq*/
+    grid-template-rows: auto auto 20rem;/*las filas seran tres el 
+                       tamaño de las mismas tendran estas dimensiones
+                       notar que la ultima es para el mensaje*/
+  }
+}
+@media (min-width: 1140px) {/*laptop o comutadora de escritorio*/  
+}
+
+.navegacion-principal a{
+  color: var(--blanco);
+  text-decoration: none; /*elimina la linea inferior del texto de la barra*/
+  font-size: 2rem;
+  font-weight: bold;
+  padding:1rem;/*borde alrededor de la barra de navegacion*/
+}
+.navegacion-principal a:hover{/*hover evento que se dispara al pasar sobre el enlace */
+background-color: var(--primario);
+padding:1rem;/*borde con marco alrededor de la palabra al pasar sobre ella  */
+color: var(--oscuro);
+}
+.hero{
+ background-image: url(../img/hero.jpg);/*el .. es para salir de la carpeta y encontrar la nueva ruta de la imagen*/
+ background-repeat: no-repeat;/*no repetimos la imagen al agrandar el
+                               ancho de la pagina web*/
+ background-size: cover; /*para que la imagen cubra todo el ancho*/
+ height: 45rem;
+ position:relative; /*el padre siempre tiene que tener posicion relativa
+                   para que el hijo pueda posicionarse de forma absoluta*/
+  margin-bottom: 2rem;
+}
+/*box model o modelo de caja*/
+.contenido-hero {
+  position: absolute;
+  background-color: rgba(0,0,0,0.5); /*agregamos una transparencia*/
+  width: 100%;   /* ancho de la trannsparencia*/
+  height: 100%; /* alto de la transparencia*/
+  display: flex; /* por defecto coloca el contenido de izquierda a derecha*/
+  flex-direction: column;
+  align-items: center;   /*ahora si centramos horizontalmente*/
+  justify-content: center; /*ahora si centramos verticalmente*/
+}
+
+.contenido-hero h2 ,
+.contenido-hero p{
+  color: var(--blanco); /*aplicamos color al texto*/
+}
+
+.ubicacion {
+  display:flex;
+  align-items:flex-end;
+}
+
+.servicio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.servicio h3{
+    color: var(--secundario);
+    font-weight: normal;
+
+}
+.servicio p {
+  line-height: 2; /*interlineado del texto*/
+  text-align: center;
+  text-justify: auto;
+}
+.servicio .iconos{
+  height: 14rem;
+  width: 14rem;
+  background-color: var(--primario);
+  border-radius: 50%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+/*contacto formulario*/
+.formulario {
+  background-color: var(--gris);
+  width: min( 60rem, 100% );/*evalua cual valor es menor o 60 rem o el
+                            100% y lo establece como ancho del form*/
+  margin: 0 auto; /*utilizado para centrar contenido , usarlo cuando
+                    no se utilize un display flex*/
+  padding: 2rem;
+  border-radius: 1rem;
+}
+.formulario fieldset {
+  border:none;
+}
+.formulario legend { /*modificaciones a contactanos llenando todos los
+                       campos*/
+  text-align: center;
+  font-size: 2.8 rem;
+  text-transform: uppercase ;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: var(--primario);
+}
+
+.campo:nth-child(3), /*nth-child es un pseudo-selector, dentro de campo*/
+.campo:nth-child(4) { /*dentro de la class campo existen 4 hijos esta
+                      funcion selecciona el tercer hijo*/
+grid-column: 1 / 3 ;/*le pedimos que al hijo 3(correo)que su columna 
+                      ocupe desde la 1 a la 3, este tipo de seleccion
+                      me evita el uso de un class dentro de campo*/
+}
+.campo{
+  
+}
+.campo textarea{
+  height: 16rem;
+}
+.campo label { 
+color: var(--blanco);/*color de  letra*/
+font-weight:bold; /*la altura de la letra*/
+display: block;/*la vista es de bloques encimados*/
+font-size: 2rem;
+text-align: left;
+padding: 0.4rem;
+}
+.input-text {
+  width: 100%;
+  border:none;
+  padding: 1.0rem;
+  border-radius: 0.5rem;
+}
+.footer {
+  text-align: center;
+}
+/*el estilo de css utilizado es el de modulos y utilidades*/
